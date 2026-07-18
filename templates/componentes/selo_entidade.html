@@ -1,0 +1,18 @@
+{# ==========================================================================
+   SELO DISCRETO DE ENTIDADE (Chain Badge) — macro Jinja2
+   Uso: essas imagens (Cooperativa, Refinaria, Destinatário, Transportador)
+   NÃO fazem parte da biblioteca RECICLO Profile Icons (§9 do DS-001) — são
+   selos de contexto que aparecem discretamente no dashboard de cada perfil,
+   conforme decisão da liderança.
+
+   Uso em outra tela:
+     {% from 'componentes/selo_entidade.html' import selo_entidade %}
+     {{ selo_entidade('refinaria', 'Refinaria') }}
+   ========================================================================== #}
+{% macro selo_entidade(chave, rotulo) %}
+  <span class="ds-entity-badge" title="{{ rotulo }}">
+    <img src="{{ url_for('static', filename='img/entity-badges/' + chave + '.jpg') }}"
+         alt="Selo {{ rotulo }}" class="ds-entity-badge__img">
+    <span class="ds-entity-badge__label">{{ rotulo }}</span>
+  </span>
+{% endmacro %}

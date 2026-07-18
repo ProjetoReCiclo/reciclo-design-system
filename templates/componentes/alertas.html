@@ -1,0 +1,28 @@
+{# ==========================================================================
+   COMPONENTE 8 — ALERTAS / TOASTS — INÍCIO
+   Uso: {% include 'componentes/alertas.html' %}
+   Coloque este include uma única vez no base.html (fora do bloco de conteúdo)
+   para que as mensagens flash apareçam sobrepostas em qualquer tela.
+
+   Categorias do Flask -> classe Bootstrap:
+     'success' -> alert-success | 'danger'/'error' -> alert-danger | 'warning' -> alert-warning
+   ========================================================================== #}
+<div class="ds-alert-stack">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for categoria, mensagem in messages %}
+        {% set categoria_bs = 'danger' if categoria == 'error' else categoria %}
+        <div class="alert alert-{{ categoria_bs }} alert-dismissible fade show shadow-sm" role="alert" data-ds-autohide="6000">
+          <i class="bi
+            {% if categoria_bs == 'success' %}bi-check-circle-fill
+            {% elif categoria_bs == 'danger' %}bi-x-circle-fill
+            {% elif categoria_bs == 'warning' %}bi-exclamation-triangle-fill
+            {% else %}bi-info-circle-fill{% endif %} me-2"></i>
+          {{ mensagem }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+{# ============================ ALERTAS — FIM =================================== #}

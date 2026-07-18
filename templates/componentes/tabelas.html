@@ -1,0 +1,68 @@
+{# ==========================================================================
+   COMPONENTE 6 — TABELAS (Data Tables) — INÍCIO
+   Uso: {% include 'componentes/tabelas.html' %}
+
+   Variáveis Jinja2 esperadas:
+     - colunas (list de str): ['Nome', 'E-mail', 'Status', 'Data de cadastro']
+     - registros (list de dict): [{ 'id': 1, 'nome': '...', 'email': '...', 'status_html': '...', 'data': '...' }, ...]
+     - paginacao (dict, opcional): { 'pagina_atual': 1, 'total_paginas': 5 }
+   ========================================================================== #}
+<div class="ds-table-card">
+  <div class="table-responsive">
+    <table class="table ds-table table-hover align-middle mb-0">
+      <thead>
+        <tr>
+          {% for coluna in colunas %}
+            <th scope="col">{{ coluna }}</th>
+          {% endfor %}
+          <th scope="col" class="text-end">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for registro in registros %}
+          <tr>
+            <td>{{ registro.nome }}</td>
+            <td>{{ registro.email }}</td>
+            <td>{{ registro.status_html | safe }}</td>
+            <td>{{ registro.data }}</td>
+            <td class="text-end ds-table__actions">
+              <button class="btn btn-outline-primary btn-sm btn-icon" aria-label="Editar {{ registro.nome }}">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm btn-icon" aria-label="Excluir {{ registro.nome }}"
+                      data-bs-toggle="modal" data-bs-target="#modalConfirmarExclusao"
+                      data-registro-id="{{ registro.id }}">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="{{ colunas | length + 1 }}" class="text-center text-muted py-4">
+              Nenhum registro encontrado.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% if paginacao %}
+    <nav class="d-flex justify-content-end p-3" aria-label="Paginação">
+      <ul class="pagination pagination-sm mb-0">
+        <li class="page-item {% if paginacao.pagina_atual == 1 %}disabled{% endif %}">
+          <a class="page-link" href="?pagina={{ paginacao.pagina_atual - 1 }}">Anterior</a>
+        </li>
+        {% for p in range(1, paginacao.total_paginas + 1) %}
+          <li class="page-item {% if p == paginacao.pagina_atual %}active{% endif %}">
+            <a class="page-link" href="?pagina={{ p }}">{{ p }}</a>
+          </li>
+        {% endfor %}
+        <li class="page-item {% if paginacao.pagina_atual == paginacao.total_paginas %}disabled{% endif %}">
+          <a class="page-link" href="?pagina={{ paginacao.pagina_atual + 1 }}">Próxima</a>
+        </li>
+      </ul>
+    </nav>
+  {% endif %}
+</div>
+{# =========================== TABELAS — FIM =================================== #}

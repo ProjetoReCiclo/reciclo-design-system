@@ -1,0 +1,30 @@
+{# ==========================================================================
+   COMPONENTE 9 — BADGES DE STATUS (Contextual Badges) — INÍCIO
+   Este arquivo define uma MACRO Jinja2 reutilizável.
+
+   Uso em outra tela/include:
+     {% from 'componentes/badges_status.html' import badge_status %}
+     {{ badge_status('pendente') }}
+     {{ badge_status('concluido') }}
+     {{ badge_status('cancelado') }}
+   ========================================================================== #}
+{% macro badge_status(status) %}
+  {% if status == 'pendente' %}
+    <span class="ds-badge-status bg-warning-subtle text-warning-emphasis">
+      <i class="bi bi-clock-fill"></i> Pendente
+    </span>
+  {% elif status == 'concluido' %}
+    <span class="ds-badge-status bg-success-subtle text-success-emphasis">
+      <i class="bi bi-check-circle-fill"></i> Concluído
+    </span>
+  {% elif status == 'cancelado' %}
+    <span class="ds-badge-status bg-danger-subtle text-danger-emphasis">
+      <i class="bi bi-x-circle-fill"></i> Cancelado
+    </span>
+  {% else %}
+    <span class="ds-badge-status bg-secondary-subtle text-secondary-emphasis">
+      <i class="bi bi-dash-circle-fill"></i> {{ status | default('—') }}
+    </span>
+  {% endif %}
+{% endmacro %}
+{# ========================= BADGES DE STATUS — FIM ============================ #}

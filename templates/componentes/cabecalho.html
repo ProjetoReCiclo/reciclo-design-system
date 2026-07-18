@@ -1,0 +1,58 @@
+{# ==========================================================================
+   COMPONENTE 1 — CABEÇALHO (Top App Bar) — INÍCIO
+   Uso: {% include 'componentes/cabecalho.html' %}
+   Variáveis Jinja2 esperadas (definir no contexto da view ou via base.html):
+     - modulo_nome (str)      -> nome do módulo/plataforma exibido à esquerda
+     - notificacoes_count (int) -> se > 0, mostra o badge de notificações
+     - usuario (obj)          -> usuario.nome, usuario.avatar_url
+   ========================================================================== #}
+<header class="ds-topbar">
+
+  <button class="ds-topbar__hamburger d-lg-none" type="button"
+          data-ds-toggle="sidebar" aria-label="Abrir menu">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <span class="ds-topbar__brand">
+    <img src="{{ url_for('static', filename='img/brand/logo-reciclo-r.jpg') }}"
+         alt="RECICLO" class="ds-topbar__brand-icon">
+    {{ modulo_nome | default('RECICLO') }}
+  </span>
+
+  <div class="ms-auto d-flex align-items-center gap-2">
+
+    {# Ícone de notificações com badge #}
+    <button type="button" class="ds-topbar__icon-btn" data-bs-toggle="dropdown"
+            aria-expanded="false" aria-label="Notificações">
+      <i class="bi bi-bell"></i>
+      {% if notificacoes_count and notificacoes_count > 0 %}
+        <span class="ds-topbar__badge"></span>
+      {% endif %}
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" style="min-width: 280px;">
+      <li><h6 class="dropdown-header">Notificações</h6></li>
+      <li><a class="dropdown-item small" href="#">Nova solicitação recebida</a></li>
+      <li><a class="dropdown-item small" href="#">Relatório mensal disponível</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item small text-center text-primary" href="#">Ver todas</a></li>
+    </ul>
+
+    {# Avatar do usuário com dropdown Bootstrap #}
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="{{ usuario.avatar_url | default('https://via.placeholder.com/72') }}"
+             alt="Avatar de {{ usuario.nome | default('Usuário') }}"
+             class="ds-topbar__avatar">
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><h6 class="dropdown-header">{{ usuario.nome | default('Usuário') }}</h6></li>
+        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Meu perfil</a></li>
+        <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Configurações</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+      </ul>
+    </div>
+
+  </div>
+</header>
+{# =========================== CABEÇALHO — FIM ============================= #}

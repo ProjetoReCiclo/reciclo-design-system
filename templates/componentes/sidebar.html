@@ -1,0 +1,58 @@
+{# ==========================================================================
+   COMPONENTE 2 — BARRA LATERAL (Navigation Rail / Bottom Nav) — INÍCIO
+   Uso: {% include 'componentes/sidebar.html' %}
+
+   Variável Jinja2 esperada:
+     - nav_items (list de dict): [{ 'endpoint': 'dashboard.index', 'label': 'Início', 'icon': 'bi-house' }, ...]
+       -> No mobile, apenas os 4 primeiros itens de nav_items são exibidos (destinos principais).
+   ========================================================================== #}
+
+{# ---- DESKTOP (≥992px): Navigation Rail vertical fixa ---- #}
+<nav class="ds-sidebar">
+  <img src="{{ url_for('static', filename='img/brand/logo-reciclo-r.jpg') }}"
+       alt="RECICLO" class="ds-sidebar__logo">
+  <div class="ds-sidebar__nav">
+    {% for item in nav_items %}
+      <a href="{{ url_for(item.endpoint) }}"
+         class="ds-sidebar__item {% if request.endpoint == item.endpoint %}active{% endif %}">
+        <i class="bi {{ item.icon }}"></i>
+        <span>{{ item.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</nav>
+
+{# ---- MOBILE (<992px): Bottom Navigation Bar com os 4 principais destinos ---- #}
+<nav class="ds-bottomnav d-lg-none">
+  {% for item in nav_items[:4] %}
+    <a href="{{ url_for(item.endpoint) }}"
+       class="ds-bottomnav__item {% if request.endpoint == item.endpoint %}active{% endif %}">
+      <i class="bi {{ item.icon }}"></i>
+      <span>{{ item.label }}</span>
+    </a>
+  {% endfor %}
+</nav>
+
+{# ---- MOBILE: Offcanvas (drawer) acionado pelo botão hambúrguer do Cabeçalho,
+       para acesso a itens além dos 4 principais da bottom nav ---- #}
+<div class="offcanvas offcanvas-start" tabindex="-1" id="dsMobileDrawer">
+  <div class="offcanvas-header">
+    <span class="ds-topbar__brand">{{ modulo_nome | default('NomeApp') }}</span>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-unstyled d-flex flex-column gap-1">
+      {% for item in nav_items %}
+        <li>
+          <a href="{{ url_for(item.endpoint) }}"
+             class="d-flex align-items-center gap-2 p-2 rounded text-decoration-none
+                    {% if request.endpoint == item.endpoint %}bg-primary-subtle text-primary fw-semibold{% else %}text-body{% endif %}">
+            <i class="bi {{ item.icon }} fs-5"></i>
+            {{ item.label }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{# ========================= BARRA LATERAL — FIM ============================= #}

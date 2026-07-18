@@ -1,0 +1,37 @@
+{# ==========================================================================
+   COMPONENTE 10 — CARDS DE PENDÊNCIAS (Task/Action Cards) — INÍCIO
+   Uso: {% include 'componentes/cards_pendencias.html' %}
+
+   Variável Jinja2 esperada:
+     - tarefas (list de dict): [
+         { 'id': 1, 'titulo': 'Aprovar orçamento', 'prazo': '20/07', 'prioridade': 'alta', 'concluida': false },
+         ...
+       ]
+     -> 'prioridade' deve ser 'alta', 'media' ou 'baixa'.
+   ========================================================================== #}
+<div class="d-flex flex-column gap-2">
+  {% for tarefa in tarefas %}
+    <div class="ds-task-card">
+      <div class="ds-task-card__left">
+        <input class="form-check-input ds-task-card__checkbox mt-0" type="checkbox"
+               id="tarefa{{ tarefa.id }}" {% if tarefa.concluida %}checked{% endif %}>
+        <label class="ds-task-card__title {% if tarefa.concluida %}text-decoration-line-through text-muted{% endif %}"
+               for="tarefa{{ tarefa.id }}">
+          {{ tarefa.titulo }}
+        </label>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <span class="ds-task-card__due"><i class="bi bi-calendar-event me-1"></i>{{ tarefa.prazo }}</span>
+        <span class="ds-badge-status
+          {% if tarefa.prioridade == 'alta' %}bg-danger-subtle text-danger-emphasis
+          {% elif tarefa.prioridade == 'media' %}bg-warning-subtle text-warning-emphasis
+          {% else %}bg-secondary-subtle text-secondary-emphasis{% endif %}">
+          {{ tarefa.prioridade | capitalize }}
+        </span>
+      </div>
+    </div>
+  {% else %}
+    <p class="text-muted text-center py-3 mb-0">Nenhuma pendência no momento.</p>
+  {% endfor %}
+</div>
+{# ====================== CARDS DE PENDÊNCIAS — FIM ============================ #}

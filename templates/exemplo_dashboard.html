@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% from 'componentes/badges_status.html' import badge_status %}
+{% from 'componentes/perfil_badge.html' import perfil_badge %}
+
+{% block titulo %}Dashboard — {{ modulo_nome }}{% endblock %}
+
+{% block conteudo %}
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h4 class="mb-0">Visão geral</h4>
+    {# Badge discreto do perfil logado — trocar o slug conforme o usuário/sessão #}
+    {{ perfil_badge('coletor', 'Coletor') }}
+  </div>
+
+  {# Componente 3: Cards de Indicadores #}
+  {% include 'componentes/cards_indicadores.html' %}
+
+  <div class="row g-3 mt-1">
+    <div class="col-lg-8">
+      <h5 class="mb-3">Registros recentes</h5>
+      {# Componente 6: Tabelas — os registros precisam vir com 'status_html' já
+         renderizado com a macro badge_status, por exemplo no próprio view/Python
+         ou montando aqui antes do include. #}
+      {% include 'componentes/tabelas.html' %}
+    </div>
+
+    <div class="col-lg-4">
+      <h5 class="mb-3">Pendências</h5>
+      {# Componente 10: Cards de Pendências #}
+      {% include 'componentes/cards_pendencias.html' %}
+
+      <h5 class="mt-4 mb-3">Atividade recente</h5>
+      {# Componente 11: Timeline de Atividades #}
+      {% include 'componentes/timeline_atividades.html' %}
+    </div>
+  </div>
+{% endblock %}

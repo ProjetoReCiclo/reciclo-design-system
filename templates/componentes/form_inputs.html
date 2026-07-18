@@ -1,0 +1,46 @@
+{# ==========================================================================
+   COMPONENTE 5 — CAMPOS DE FORMULÁRIO (Form Inputs) — INÍCIO
+   Uso: {% include 'componentes/form_inputs.html' %}
+   Este arquivo mostra a estrutura de referência; copie os blocos de campo
+   individualmente ao montar formulários reais nas 40 telas.
+
+   Padrão de validação: adicionar a classe "ds-needs-validation" na tag <form>
+   para ativar o feedback visual via design-system.js + atributos "required"/"pattern".
+   ========================================================================== #}
+<form class="ds-needs-validation" novalidate>
+
+  {# Input de texto #}
+  <div class="mb-3">
+    <label for="campoNome" class="form-label">Nome completo</label>
+    <input type="text" class="form-control" id="campoNome" name="nome" required>
+    <div class="invalid-feedback">Informe o nome completo.</div>
+  </div>
+
+  {# Select #}
+  <div class="mb-3">
+    <label for="campoStatus" class="form-label">Status</label>
+    <select class="form-select" id="campoStatus" name="status" required>
+      <option value="" selected disabled>Selecione...</option>
+      <option value="pendente">Pendente</option>
+      <option value="concluido">Concluído</option>
+      <option value="cancelado">Cancelado</option>
+    </select>
+    <div class="invalid-feedback">Selecione um status.</div>
+  </div>
+
+  {# Textarea #}
+  <div class="mb-3">
+    <label for="campoObs" class="form-label">Observações</label>
+    <textarea class="form-control" id="campoObs" name="observacoes" rows="3"></textarea>
+  </div>
+
+  {# Checkbox #}
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="campoTermos" name="aceite" required>
+    <label class="form-check-label" for="campoTermos">Estou de acordo com os termos</label>
+    <div class="invalid-feedback">É necessário aceitar os termos.</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+{# ======================= CAMPOS DE FORMULÁRIO — FIM ========================= #}

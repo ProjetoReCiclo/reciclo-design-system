@@ -1,0 +1,22 @@
+{# ==========================================================================
+   COMPONENTE 11 — TIMELINE DE ATIVIDADES (Activity Log) — INÍCIO
+   Uso: {% include 'componentes/timeline_atividades.html' %}
+
+   Variável Jinja2 esperada:
+     - atividades (list de dict, ordenada da mais recente para a mais antiga): [
+         { 'data_hora': '18/07/2026 14:32', 'descricao': 'Usuário João criou o registro #4521' },
+         ...
+       ]
+   ========================================================================== #}
+<ul class="ds-timeline">
+  {% for atividade in atividades %}
+    <li class="ds-timeline__item">
+      <span class="ds-timeline__node"></span>
+      <span class="ds-timeline__time">{{ atividade.data_hora }}</span>
+      <p class="ds-timeline__desc">{{ atividade.descricao }}</p>
+    </li>
+  {% else %}
+    <li class="text-muted">Nenhuma atividade registrada.</li>
+  {% endfor %}
+</ul>
+{# ==================== TIMELINE DE ATIVIDADES — FIM ============================ #}

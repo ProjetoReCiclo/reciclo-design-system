@@ -1,0 +1,21 @@
+{# ==========================================================================
+   COMPONENTE 12 — BADGE DE PERFIL (uso discreto no dashboard) — INÍCIO
+   Ativo de marca (não é Bootstrap Icons) — um ícone próprio por perfil,
+   recebido da equipe de Design. Usar UMA vez por tela, perto do título
+   (ex.: cabeçalho da página ou breadcrumb), nunca em tamanho grande.
+
+   Uso em outra tela/include:
+     {% from 'componentes/perfil_badge.html' import perfil_badge %}
+     {{ perfil_badge('coletor', 'Coletor') }}
+
+   Perfis com ícone disponível em static/img/profiles/:
+     cooperativa, refinaria, destinatario, coletor, gerador, transportador
+   ========================================================================== #}
+{% macro perfil_badge(perfil_slug, perfil_nome) %}
+  <span class="ds-perfil-badge">
+    <img src="{{ url_for('static', filename='img/profiles/' + perfil_slug + '.jpg') }}"
+         alt="Perfil: {{ perfil_nome }}" class="ds-perfil-badge__icon">
+    <span class="ds-perfil-badge__label">{{ perfil_nome }}</span>
+  </span>
+{% endmacro %}
+{# ===================== BADGE DE PERFIL — FIM =================================== #}

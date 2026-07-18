@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{# ==========================================================================
+   TELA DE LOGIN — CAMADA INSTITUCIONAL
+   Única tela do produto que usa a paleta preto + dourado. Todo o restante
+   da plataforma (dashboards, cadastros, operação, auditoria, admin) usa
+   o layout de 'base.html', que já traz a Camada 2 (operacional).
+
+   Variáveis Jinja2 esperadas:
+     - perfil_nome (str, opcional) -> ex.: 'COLETOR', 'AUDITOR', 'ADMIN'
+       (o mesmo perfil de acesso mostrado na referência visual do cliente)
+     - error (str, opcional) -> mensagem de erro de autenticação
+   ========================================================================== #}
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — RECICLO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/design-system.css') }}">
+</head>
+<body>
+
+  <div class="ds-login-screen">
+    <div class="ds-login-panel">
+
+      {# Logo oficial recebido da equipe de Design (versão monograma "R").
+         Versão alternativa disponível: reciclo-logo-gota.jpg (gota de óleo) —
+         trocar aqui se a liderança preferir essa variante como principal. #}
+      <img src="{{ url_for('static', filename='img/brand/logo-reciclo-r.jpg') }}"
+           alt="RECICLO" class="ds-login-panel__logo">
+
+      <div class="ds-login-panel__tagline">Rastreabilidade que transforma</div>
+
+      {% if perfil_nome %}
+        <div class="ds-login-panel__modulo">{{ perfil_nome | upper }}</div>
+      {% endif %}
+
+      {% if error %}
+        <div class="alert alert-danger py-2 small mb-3">{{ error }}</div>
+      {% endif %}
+
+      <form method="post" action="{{ url_for('login') }}" class="text-start">
+        <div class="mb-3">
+          <label for="loginUsuario" class="form-label">Usuário</label>
+          <input type="text" class="form-control" id="loginUsuario" name="usuario" required autofocus>
+        </div>
+        <div class="mb-3">
+          <label for="loginSenha" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="loginSenha" name="senha" required>
+        </div>
+
+        <button type="submit" class="ds-login-panel__submit">
+          <i class="bi bi-arrow-right"></i> LOGIN
+        </button>
+      </form>
+
+      <div class="ds-login-panel__footer">
+        <i class="bi bi-shield-check"></i>
+        ACESSO SEGURO<br>
+        SISTEMA DE ALTA CONFIABILIDADE
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
