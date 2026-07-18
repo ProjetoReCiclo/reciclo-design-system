@@ -11,6 +11,10 @@
   --ds-inst-bg-panel: #141414;
   --ds-inst-gold: #c9962e;
   --ds-inst-gold-light: #e8c879;
+  --ds-inst-gold-matte: #a9895c;
+  --ds-inst-gold-metallic-hi: #f3d78a;
+  --ds-inst-gold-metallic-mid: #c9962e;
+  --ds-inst-gold-metallic-lo: #8a651c;
   --ds-inst-border: rgba(201, 150, 46, .45);
   --ds-inst-text-muted: #b8b8b8;
 
@@ -615,26 +619,41 @@ body {
 
 .ds-login-panel__brand {
   font-weight: 800;
-  font-size: 1.6rem;
-  letter-spacing: .04em;
-  color: var(--ds-inst-gold);
+  font-size: clamp(28px, 3vw, 32px);
+  letter-spacing: .05em;
   margin-bottom: .25rem;
+  background: linear-gradient(180deg,
+    var(--ds-inst-gold-metallic-hi) 0%,
+    var(--ds-inst-gold-metallic-mid) 55%,
+    var(--ds-inst-gold-metallic-lo) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .ds-login-panel__tagline {
-  font-size: .8rem;
-  color: var(--ds-inst-gold-light);
+  font-size: clamp(11px, 1.1vw, 13px);
+  color: var(--ds-inst-gold-matte);
+  letter-spacing: .02em;
   margin-bottom: 1.25rem;
 }
 
 .ds-login-panel__modulo {
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: #ffffff;
+  font-weight: 800;
+  font-size: clamp(36px, 4vw, 42px);
   letter-spacing: .06em;
   margin-bottom: 1.75rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--ds-inst-border);
+  background: linear-gradient(180deg,
+    var(--ds-inst-gold-metallic-hi) 0%,
+    var(--ds-inst-gold-metallic-mid) 55%,
+    var(--ds-inst-gold-metallic-lo) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .ds-login-panel .form-label {

@@ -24,12 +24,13 @@
   <div class="ds-login-screen">
     <div class="ds-login-panel">
 
-      {# Logo oficial recebido da equipe de Design (versão monograma "R").
-         Versão alternativa disponível: reciclo-logo-gota.jpg (gota de óleo) —
-         trocar aqui se a liderança preferir essa variante como principal. #}
-      <img src="{{ url_for('static', filename='img/brand/logo-reciclo-r.jpg') }}"
+      {# Emblema central padronizado (imagem 2, aprovada) — ícone isolado,
+         sem o wordmark cravado na imagem, porque "RECICLO" já é tipografado
+         separadamente logo abaixo (ver ds-login-panel__brand). #}
+      <img src="{{ url_for('static', filename='img/brand/logo-reciclo-icon.png') }}"
            alt="RECICLO" class="ds-login-panel__logo">
 
+      <div class="ds-login-panel__brand">RECICLO</div>
       <div class="ds-login-panel__tagline">Rastreabilidade que transforma</div>
 
       {% if perfil_nome %}
