@@ -9,7 +9,9 @@
      {{ perfil_badge('coletor', 'Coletor') }}
 
    Perfis com ícone disponível em static/img/profiles/:
-     cooperativa, refinaria, destinatario, coletor, gerador, transportador
+     cooperativa, refinaria, destinatario, coletor, gerador, motorista, master
+     (motorista = ícone do caminhão; substitui a retificação de "transportador"
+     com R genérico — o arquivo antigo transportador.jpg fica só como histórico)
    ========================================================================== #}
 {% macro perfil_badge(perfil_slug, perfil_nome) %}
   <span class="ds-perfil-badge">

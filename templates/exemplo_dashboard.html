@@ -7,7 +7,9 @@
 {% block conteudo %}
   <div class="d-flex align-items-center justify-content-between mb-3">
     <h4 class="mb-0">Visão geral</h4>
-    {# Badge discreto do perfil logado — trocar o slug conforme o usuário/sessão #}
+    {# Badge discreto do perfil logado — trocar o slug conforme o usuário/sessão.
+       Slugs disponíveis: cooperativa, refinaria, destinatario, coletor,
+       gerador, motorista, master #}
     {{ perfil_badge('coletor', 'Coletor') }}
   </div>
 

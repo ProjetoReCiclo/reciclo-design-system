@@ -3,7 +3,7 @@ App Flask mínimo apenas para DEMONSTRAR o Design System.
 Rode com: python app.py  (requer Flask instalado: pip install flask)
 As 40 telas reais do produto devem seguir o mesmo padrão de contexto usado aqui.
 """
-from flask import Flask, render_template, flash, redirect, url_for
+from flask import Flask, render_template, flash, redirect, url_for, request
 
 app = Flask(__name__)
 app.secret_key = "troque-esta-chave-em-producao"
@@ -32,7 +32,15 @@ def inject_globals():
 
 @app.route("/login")
 def login():
-    return render_template("login.html", perfil_nome="COLETOR")
+    # Demonstração: /login?perfil=master, /login?perfil=motorista, /login?perfil=coletor, etc.
+    perfis_validos = {
+        "master": "MASTER", "motorista": "MOTORISTA", "coletor": "COLETOR",
+        "gerador": "GERADOR", "cooperativa": "COOPERATIVA",
+        "refinaria": "REFINARIA", "destinatario": "DESTINATÁRIO",
+    }
+    slug = request.args.get("perfil", "master")
+    nome = perfis_validos.get(slug, slug.upper())
+    return render_template("login.html", perfil_slug=slug, perfil_nome=nome)
 
 
 @app.route("/")

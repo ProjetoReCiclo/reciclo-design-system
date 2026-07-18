@@ -71,6 +71,15 @@ o front-end vai referenciá-los via Jinja2, por exemplo:
 
 ## Status atual
 
+🟢 **7/7 ícones recebidos, todos em fundo branco, já integrados e
+consistentes entre si:** `cooperativa.jpg`, `refinaria.jpg`,
+`destinatario.jpg`, `coletor.jpg`, `gerador.jpg`, `motorista.jpg`,
+`master.jpg` — todos em `static/img/profiles/`. O arquivo antigo
+`transportador.jpg` (fundo preto, R genérico) foi removido de `static/`;
+mantido só como histórico em `assets/reciclo-profile-icons/recebido/`.
+
+Testado em todas as 7 rotas de login (`/login?perfil=<slug>`) — sem erro.
+
 🟢 **6 ícones recebidos e já integrados** ao Design System em
 `static/img/profiles/`: `cooperativa.jpg`, `refinaria.jpg`, `destinatario.jpg`,
 `coletor.jpg`, `gerador.jpg`, `transportador.jpg`. Uma cópia bruta também fica

@@ -1,29 +1,44 @@
 /* ==========================================================================
    DESIGN SYSTEM — TOKENS GLOBAIS
    Identidade oficial RECICLO em DUAS CAMADAS:
-     Camada 1 — Institucional: preto + dourado (usada só na tela de Login)
+     Camada 1 — Institucional: BRANCO + dourado, alto contraste (Login)
+                (retificado: modelo aprovado trocou de preto para branco)
      Camada 2 — Operacional: gradiente suave + branco, verde para ações,
                 dourado reservado para elementos de identidade
+
+   Paleta oficial (Manual de Marca RECICLO):
+     Ouro Principal #C9A227 · Ouro Claro #E8C74A · Ouro Escuro #8B6914
+     Preto Quente #1C1A14 · Branco #FFFFFF · Cinza Base #F2F1EC
    ========================================================================== */
 :root {
-  /* ---- Camada 1 — Institucional (Login) ---- */
-  --ds-inst-bg: #0a0a0a;
-  --ds-inst-bg-panel: #141414;
-  --ds-inst-gold: #c9962e;
-  --ds-inst-gold-light: #e8c879;
-  --ds-inst-gold-matte: #a9895c;
-  --ds-inst-gold-metallic-hi: #f3d78a;
-  --ds-inst-gold-metallic-mid: #c9962e;
-  --ds-inst-gold-metallic-lo: #8a651c;
-  --ds-inst-border: rgba(201, 150, 46, .45);
-  --ds-inst-text-muted: #b8b8b8;
+  /* ---- Paleta oficial (Manual de Marca) ---- */
+  --ds-brand-ouro-principal: #c9a227;
+  --ds-brand-ouro-claro: #e8c74a;
+  --ds-brand-ouro-escuro: #8b6914;
+  --ds-brand-preto-quente: #1c1a14;
+  --ds-brand-branco: #ffffff;
+  --ds-brand-cinza-base: #f2f1ec;
+
+  /* ---- Camada 1 — Institucional (Login) — fundo BRANCO, retificado ---- */
+  --ds-inst-bg: var(--ds-brand-branco);
+  --ds-inst-bg-panel: var(--ds-brand-branco);
+  --ds-inst-gold: var(--ds-brand-ouro-principal);
+  --ds-inst-gold-light: var(--ds-brand-ouro-claro);
+  --ds-inst-gold-matte: var(--ds-brand-ouro-escuro);
+  --ds-inst-gold-metallic-hi: var(--ds-brand-ouro-claro);
+  --ds-inst-gold-metallic-mid: var(--ds-brand-ouro-principal);
+  --ds-inst-gold-metallic-lo: var(--ds-brand-ouro-escuro);
+  --ds-inst-border: rgba(201, 162, 39, .55);
+  --ds-inst-text-muted: #8a7b52;
+  --ds-inst-text-dark: var(--ds-brand-preto-quente);
+  --ds-inst-input-bg: var(--ds-brand-cinza-base);
 
   /* ---- Camada 2 — Operacional ---- */
   --ds-op-gradient: linear-gradient(135deg, #d8fbe7 0%, #c6dcfc 100%);
   --ds-op-green: #1e8a4c;
   --ds-op-green-dark: #146338;
   --ds-op-green-light: #e5f4ea;
-  --ds-op-gold: #c9962e;
+  --ds-op-gold: var(--ds-brand-ouro-principal);
   --ds-op-gold-light: #f7ecd6;
 
   /* Aliases usados pelos componentes (mantém o restante do CSS estável) */
@@ -585,7 +600,8 @@ body {
 
 /* ==========================================================================
    12. TELA DE LOGIN (Camada Institucional) — INÍCIO
-   Único ponto da plataforma que usa a Camada 1 (preto + dourado).
+   Único ponto da plataforma que usa a Camada 1 — BRANCO + dourado, alto
+   contraste (retificado de preto+dourado para o modelo oficial aprovado).
    ========================================================================== */
 .ds-login-screen {
   min-height: 100vh;
@@ -599,21 +615,21 @@ body {
 .ds-login-panel {
   width: 100%;
   max-width: 400px;
-  border: 1px solid var(--ds-inst-border);
+  border: 1.5px solid var(--ds-inst-border);
   border-radius: var(--ds-radius-md);
   padding: 3rem 2rem 2.5rem;
   text-align: center;
   background-color: var(--ds-inst-bg-panel);
+  box-shadow: 0 8px 32px rgba(201, 162, 39, .12), 0 2px 8px rgba(28, 26, 20, .06);
 }
 
 .ds-login-panel__logo {
-  width: 108px;
-  height: 108px;
-  margin: 0 auto 1.25rem;
+  width: clamp(28px, 3vw, 32px);
+  height: clamp(28px, 3vw, 32px);
+  margin: 0 auto .6rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--ds-inst-gold);
-  box-shadow: 0 0 0 4px rgba(201, 150, 46, .15);
+  border: 1px solid var(--ds-inst-gold);
   display: block;
 }
 
@@ -663,18 +679,18 @@ body {
 }
 
 .ds-login-panel .form-control {
-  background-color: #1c1c1c;
+  background-color: var(--ds-inst-input-bg);
   border-color: var(--ds-inst-border);
-  color: #ffffff;
+  color: var(--ds-inst-text-dark);
 }
 
-.ds-login-panel .form-control::placeholder { color: #6b6b6b; }
+.ds-login-panel .form-control::placeholder { color: #a89a78; }
 
 .ds-login-panel .form-control:focus {
-  background-color: #1c1c1c;
+  background-color: var(--ds-brand-branco);
   border-color: var(--ds-inst-gold);
-  box-shadow: 0 0 0 3px rgba(201, 150, 46, .2);
-  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, .2);
+  color: var(--ds-inst-text-dark);
 }
 
 .ds-login-panel__submit {
@@ -696,7 +712,7 @@ body {
 
 .ds-login-panel__submit:hover {
   background-color: var(--ds-inst-gold);
-  color: var(--ds-inst-bg);
+  color: var(--ds-inst-text-dark);
 }
 
 .ds-login-panel__footer {

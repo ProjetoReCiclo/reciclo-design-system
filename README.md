@@ -27,13 +27,20 @@ arquivos finais sem ambiguidade.
 A marca RECICLO usa **dois contextos visuais distintos**, definidos pela equipe de Design:
 
 ### Camada 1 — Institucional (`templates/login.html`)
-Usada **exclusivamente** na tela de Login: fundo preto profundo, dourado em alto contraste, painel emoldurado, botão outline dourado. Impacto visual de entrada.
+**Retificado:** fundo agora é **branco** (não mais preto) — modelo oficial aprovado
+trocou o padrão de alto contraste de preto+dourado para branco+dourado.
+Além disso, o emblema central agora **muda por perfil**: cada tela de login
+usa o ícone do seu próprio perfil (`static/img/profiles/<slug>.jpg`), em vez
+do símbolo genérico RECICLO (R). Teste local:
+`/login?perfil=master`, `/login?perfil=motorista`, `/login?perfil=coletor` etc.
 
 | Token | HEX | Uso |
 |---|---|---|
-| `--ds-inst-bg` | `#0a0a0a` | Fundo |
-| `--ds-inst-gold` | `#c9962e` | Logo, título, botão |
-| `--ds-inst-gold-light` | `#e8c879` | Tagline, textos de apoio |
+| `--ds-inst-bg` / `--ds-inst-bg-panel` | `#ffffff` (Branco oficial) | Fundo da tela e do painel |
+| `--ds-inst-gold` | `#c9a227` (Ouro Principal oficial) | Ícone, wordmark, botão |
+| `--ds-inst-gold-light` | `#e8c74a` (Ouro Claro oficial) | Gradiente metálico (parte clara) |
+| `--ds-inst-gold-matte` | `#8b6914` (Ouro Escuro oficial) | Tagline, texto fosco |
+| `--ds-inst-text-dark` | `#1c1a14` (Preto Quente oficial) | Texto escuro (inputs, hover do botão) |
 
 ### Camada 2 — Operacional (dashboards, cadastros, operação, auditorias, admin)
 Fundo em degradê suave (menta → azul claro), cards brancos, verde para ações, dourado **reservado** para identidade (marca, títulos, indicadores especiais, item de menu ativo) — sem excesso, para preservar a elegância e reduzir fadiga visual.

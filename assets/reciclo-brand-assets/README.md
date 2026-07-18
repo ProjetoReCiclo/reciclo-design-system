@@ -48,11 +48,11 @@ sidebar e na tela de Login) e `logo-reciclo-gota.jpg` (símbolo da gota de
 óleo, disponível como alternativa). Cópia bruta também em
 `assets/reciclo-brand-assets/recebido/`.
 
-⚠️ **Ainda não atende à spec original desta pasta:** os arquivos são `.jpg`
-com fundo preto, não `.svg`/`.png` em fundo transparente ≥3000×3000px. Por
-ora isso funciona porque o Design System usa o logo como "medalhão" circular
-(fundo preto + borda dourada via CSS), mas essa solução não escala para todo
-uso possível da marca (ex.: impressão, favicon em fundo colorido, aplicações
-fora do padrão circular). O restante da lista (versão negativa formal,
-monocromática isolada, favicon em múltiplos tamanhos, manual de aplicação)
-continua pendente.
+⚠️ **Novo pedido pendente:** o emblema do Login agora é padronizado em
+28–32px (spec aprovada com a liderança), com o wordmark "RECICLO" tipografado
+separadamente em HTML (`.ds-login-panel__brand`). Nesse tamanho, o texto
+"RECICLO" que já vem cravado nos arquivos `logo-reciclo-r.jpg` /
+`logo-reciclo-gota.jpg` fica ilegível (redundância inofensiva, mas não ideal).
+Se possível, pedir à equipe de Design uma versão **apenas do ícone, sem o
+texto embutido** — melhora a nitidez do emblema pequeno e facilita reuso em
+outros tamanhos (favicon, sidebar, etc.).
